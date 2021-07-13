@@ -21,7 +21,7 @@
         <div id="topology-canvas" class="full"></div>
       </div>
       <div class="panel">
-        <FlowProps :props.sync="props" :appId="appId" @change="onUpdateProps" />
+        <FlowProps :props.sync="props" @change="onUpdateProps" />
       </div>
     </div>
   </div>
@@ -29,8 +29,9 @@
 <script>
 import { Topology, registerNode } from "@topology/core";
 import { alignNodes, layout } from "@topology/layout";
-import { Tools, TooltipTexts, getStartAndEndNodes } from "@/helper/flow";
+import { Tools, TooltipTexts } from "@/helper/flow";
 import { base, baseIconRect, baseTextRect } from "./nodes/index";
+// import { LineSetting } from "./lines/index";
 import FlowNodes from "./components/FlowNodes";
 import FlowProps from "./components/FlowProps";
 import HeaderTool from "./components/HeaderTool";
@@ -48,12 +49,24 @@ export default {
       tooltipTexts: TooltipTexts,
       canvas: {},
       canvasOptions: {
-        //隐藏旋转轴
-        hideRotateCP: true,
         //是否禁止连线终点为空
         // disableEmptyLine: true,
         // 鼠标移动到右/下底部时自动扩展画布大小
         autoExpandDistance: 100,
+        options: {
+          //隐藏旋转轴
+          hideRotateCP: true,
+          //隐藏大小控制
+          hideSizeCP: true,
+        },
+        data: {
+          //初始化开始和结束节点
+          nodes: [],
+          lines: [],
+          // ...LineSetting,
+          // lineName: "curve",
+          // borderColor: "#5078ff",
+        },
       },
       props: {
         node: null,
@@ -62,17 +75,6 @@ export default {
         multi: false,
         locked: false,
       },
-      data: {
-        //配置连线类型
-        lineName: "polyline",
-        //初始化开始和结束节点
-        nodes: getStartAndEndNodes(),
-        lines: [],
-      },
-      appId:
-        this.$route.query.appId || "fc8bea8924ce44509e8c98a47904662f1498165983",
-      //该表单对应的控件列表
-      controlsList: [],
     };
   },
   created() {
@@ -112,7 +114,6 @@ export default {
             multi: false,
             nodes: null,
             locked: data.locked,
-            controlsList: [...this.controlsList],
           };
           break;
         case "line": //选中了一条连线
@@ -337,16 +338,21 @@ export default {
       overflow: auto;
       top: 0;
       left: 150px;
-      right: 280px;
+      right: 0;
       bottom: 0;
-      height: calc(100vh - 120px);
+      height: calc(100vh - 370px);
+      border: 1px dashed;
+      // margin-bottom: 80px;
+      box-sizing: border-box;
     }
     .panel {
       position: absolute;
-      width: 280px;
+      width: calc(100% - 150px);
       bottom: 0;
+      height: 250px;
       right: 0;
-      top: 0;
+      // top: 0;
+      background: #e3e3e3;
       border-left: 1px solid #e3e3e3;
       overflow: auto;
     }
