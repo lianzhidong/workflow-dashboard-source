@@ -4,7 +4,7 @@
  * @Autor: Lianzhidong
  * @Date: 2020-10-19 17:37:39
  * @LastEditors: Lianzhidong
- * @LastEditTime: 2021-07-12 14:33:24
+ * @LastEditTime: 2021-07-14 17:25:44
 -->
 <template>
   <div>
@@ -25,7 +25,6 @@
             :draggable="btn.data"
             @dragstart="onDrag($event, btn)"
           >
-            <!-- <i :class="`iconfont ${btn.icon}`"></i> -->
             <CtgIcon :name="btn.icon" class="icon"></CtgIcon>
             <i :class="btn.icon" class="iconfont"></i>
             <span v-text="btn.data.text"></span>

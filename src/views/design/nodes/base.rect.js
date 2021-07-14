@@ -4,7 +4,7 @@
  * @Autor: Lianzhidong
  * @Date: 2020-10-19 17:39:27
  * @LastEditors: Lianzhidong
- * @LastEditTime: 2021-06-29 15:13:08
+ * @LastEditTime: 2021-07-14 17:48:34
  */
 // import { Rect } from 'topology-core/models/rect'
 // import { Point } from 'topology-core/models/point'
@@ -44,7 +44,7 @@ export function baseTextRect(node) {
   );
 }
 
-//计算锚点,尚未用上
+//计算锚点,四周都有
 export function baseAnchors(node) {
   node.anchors.push(
     new Point(node.rect.x, node.rect.y + node.rect.height / 2, Direction.Left)
@@ -66,7 +66,24 @@ export function baseAnchors(node) {
       Direction.Bottom
     )
   );
-  // 例子：锚点节点只允许in（作为终点）；上面锚点只允许out
+}
+
+//输入节点
+export function inputAnchors(node) {
+  node.anchors.push(
+    new Point(
+      node.rect.x + node.rect.width,
+      node.rect.y + node.rect.height / 2,
+      Direction.Right
+    )
+  );
+  node.anchors[0].mode = AnchorMode.Out;
+}
+
+//输出节点
+export function outputAnchors(node) {
+  node.anchors.push(
+    new Point(node.rect.x, node.rect.y + node.rect.height / 2, Direction.Left)
+  );
   node.anchors[0].mode = AnchorMode.In;
-  node.anchors[1].mode = AnchorMode.Out;
 }

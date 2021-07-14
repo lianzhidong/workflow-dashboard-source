@@ -4,7 +4,7 @@
  * @Autor: Lianzhidong
  * @Date: 2020-10-13 15:42:06
  * @LastEditors: Lianzhidong
- * @LastEditTime: 2021-06-29 15:03:41
+ * @LastEditTime: 2021-07-14 18:02:16
 -->
 <template>
   <div class="header-container">
@@ -36,17 +36,15 @@
       <el-divider direction="vertical"></el-divider>
     </div> -->
     <div class="tool-btn">
-      <CtgIcon
-        name="iconFshanchu"
-        class="delete-icon"
-        @click.native="onDelete"
-      ></CtgIcon>
+      <span @click="onDelete">删除</span>
     </div>
     <div class="tool-btn" v-if="!isLock" @click="onLock">
-      <i class="el-icon-lock"></i>
+      <!-- <i class="el-icon-lock"></i> -->
+      <span>锁</span>
     </div>
     <div class="tool-btn" v-else @click="onUnlock">
-      <i class="el-icon-unlock"></i>
+      <!-- <i class="el-icon-unlock"></i> -->
+      <span>解锁</span>
     </div>
     <div class="save-btn tool-btn">
       <el-button type="primary" size="mini" @click="onSave">保存</el-button>

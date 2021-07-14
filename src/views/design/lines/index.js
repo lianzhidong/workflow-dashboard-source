@@ -4,12 +4,11 @@
  * @Autor: Lianzhidong
  * @Date: 2021-07-12 10:29:39
  * @LastEditors: Lianzhidong
- * @LastEditTime: 2021-07-12 11:18:59
+ * @LastEditTime: 2021-07-14 16:36:07
  */
 
-var LineSetting = {
-  lineName: "curve",
+export default {
+  lineName: "polyline",
   borderColor: "#5078ff",
+  toArrowColor: "red",
 };
-
-export default { LineSetting };

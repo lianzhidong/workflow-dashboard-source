@@ -30,8 +30,15 @@
 import { Topology, registerNode } from "@topology/core";
 import { alignNodes, layout } from "@topology/layout";
 import { Tools, TooltipTexts } from "@/helper/flow";
-import { base, baseIconRect, baseTextRect } from "./nodes/index";
-// import { LineSetting } from "./lines/index";
+import {
+  base,
+  baseIconRect,
+  baseTextRect,
+  baseAnchors,
+  inputAnchors,
+  outputAnchors,
+} from "./nodes/index";
+import LineSetting from "./lines/index";
 import FlowNodes from "./components/FlowNodes";
 import FlowProps from "./components/FlowProps";
 import HeaderTool from "./components/HeaderTool";
@@ -49,24 +56,21 @@ export default {
       tooltipTexts: TooltipTexts,
       canvas: {},
       canvasOptions: {
+        //隐藏旋转轴
+        hideRotateCP: true,
         //是否禁止连线终点为空
         // disableEmptyLine: true,
         // 鼠标移动到右/下底部时自动扩展画布大小
         autoExpandDistance: 100,
-        options: {
-          //隐藏旋转轴
-          hideRotateCP: true,
-          //隐藏大小控制
-          hideSizeCP: true,
-        },
-        data: {
-          //初始化开始和结束节点
-          nodes: [],
-          lines: [],
-          // ...LineSetting,
-          // lineName: "curve",
-          // borderColor: "#5078ff",
-        },
+      },
+      data: {
+        //初始化开始和结束节点
+        nodes: [],
+        lines: [],
+        // lineName: "polyline",
+        scale: 1,
+        locked: 0,
+        ...LineSetting,
       },
       props: {
         node: null,
@@ -83,7 +87,8 @@ export default {
   mounted() {
     this.canvasOptions.on = this.onMessage;
     this.canvas = new Topology("topology-canvas", this.canvasOptions);
-    //bug：保存后的数据，type为1则是连线，canvasoption里配置的是polyline,保存后缺变成默认值
+    let canvasData = localStorage.getItem("canvasData");
+    canvasData ? this.open(canvasData) : this.open(this.data);
     setTimeout(() => {
       this.canvas.render();
     }, 0);
@@ -94,10 +99,19 @@ export default {
   methods: {
     //注册左侧栏节点
     canvasRegister() {
-      registerNode("baseNode", base, null, baseIconRect, baseTextRect);
+      registerNode("inputNode", base, inputAnchors, baseIconRect, baseTextRect);
+      registerNode(
+        "outputNode",
+        base,
+        outputAnchors,
+        baseIconRect,
+        baseTextRect
+      );
+      registerNode("baseNode", base, baseAnchors, baseIconRect, baseTextRect);
     },
     onSave() {
-      console.log(JSON.stringify(this.canvas.data));
+      let res = JSON.stringify(this.canvas.data);
+      localStorage.setItem("canvasData", res);
     },
     async open(d) {
       this.canvas.open(d);

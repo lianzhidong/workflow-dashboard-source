@@ -2,33 +2,55 @@ import Utils from "@/helper/utilForFlow.js";
 
 export const Tools = [
   {
-    group: "节点",
+    group: "输入输出",
     children: [
       {
-        name: "baseNode",
-        icon: "iconFbianji",
+        icon: "iconbanli",
         data: {
-          text: "审批节点",
+          text: "输入",
           rect: {
             width: 120,
             height: 40,
           },
-          icon: "\ue657",
+          icon: "\ue6b7",
           iconFamily: "iconfont",
           iconSize: 20,
           borderRadius: 0.1,
-          name: "baseNode",
+          name: "inputNode",
           fillStyle: "#ffffff",
           data: {
-            type: "Approve",
+            type: "Function",
           },
         },
       },
       {
-        name: "baseNode",
         icon: "iconbanli",
         data: {
-          text: "功能节点",
+          text: "输出",
+          rect: {
+            width: 120,
+            height: 40,
+          },
+          icon: "\ue6b7",
+          iconFamily: "iconfont",
+          iconSize: 20,
+          borderRadius: 0.1,
+          name: "outputNode",
+          fillStyle: "#ffffff",
+          data: {
+            type: "Function",
+          },
+        },
+      },
+    ],
+  },
+  {
+    group: "数据处理",
+    children: [
+      {
+        icon: "iconbanli",
+        data: {
+          text: "横向连接",
           rect: {
             width: 120,
             height: 40,
@@ -45,82 +67,78 @@ export const Tools = [
         },
       },
       {
-        name: "baseNode",
-        icon: "iconchexiao",
+        icon: "iconbanli",
         data: {
-          text: "抄送节点",
+          text: "追加合并",
           rect: {
             width: 120,
             height: 40,
           },
-          icon: "\ue611",
+          icon: "\ue6b7",
           iconFamily: "iconfont",
           iconSize: 20,
           borderRadius: 0.1,
           name: "baseNode",
           fillStyle: "#ffffff",
           data: {
-            type: "Circulate",
+            type: "Function",
           },
         },
       },
       {
-        name: "baseNode",
-        icon: "iconjingban",
+        icon: "iconbanli",
         data: {
-          text: "经办节点",
+          text: "分组汇总",
           rect: {
             width: 120,
             height: 40,
           },
-          icon: "\ue6bc",
+          icon: "\ue6b7",
           iconFamily: "iconfont",
           iconSize: 20,
           borderRadius: 0.1,
           name: "baseNode",
           fillStyle: "#ffffff",
           data: {
-            type: "FillSheet",
+            type: "Function",
           },
         },
       },
       {
-        name: "baseNode",
-        icon: "iconfenzhipandingguize",
+        icon: "iconbanli",
         data: {
-          text: "汇合节点",
+          text: "数据筛选",
           rect: {
             width: 120,
             height: 40,
           },
-          icon: "\ue759",
+          icon: "\ue6b7",
           iconFamily: "iconfont",
           iconSize: 20,
           borderRadius: 0.1,
           name: "baseNode",
           fillStyle: "#ffffff",
           data: {
-            type: "Connection",
+            type: "Function",
           },
         },
       },
       {
-        name: "baseNode",
-        icon: "iconzuzhijiagouliucheng",
+        icon: "iconbanli",
         data: {
-          text: "子节点",
+          text: "字段设置",
           rect: {
             width: 120,
             height: 40,
           },
-          icon: "\ue658",
+          icon: "\ue6b7",
           iconFamily: "iconfont",
           iconSize: 20,
           borderRadius: 0.1,
           name: "baseNode",
           fillStyle: "#ffffff",
           data: {
-            type: "SubInstance",
+            type: "Function",
           },
         },
       },
